@@ -26,8 +26,13 @@ function appendCustomerInfor(currentCustomer) {
     $("#eemail").val(currentCustomer.email);
     $("#ephone").val(currentCustomer.phone);
     $("#eaddress").val(currentCustomer.address);
+}
 
-
+function appendDeleteCustomerInfor(currentCustomer) {
+    $("#dname").val(currentCustomer.name);
+    $("#demail").val(currentCustomer.email);
+    $("#dphone").val(currentCustomer.phone);
+    $("#daddress").val(currentCustomer.address);
 }
 
 function generateId() { let id = 0;
@@ -53,6 +58,7 @@ function  add(e)
   console.log(listCustomer);
   render(listCustomer);
   e.preventDefault();
+  document.querySelector("form").reset();
 }
 
 $("#save").click(save)
@@ -80,8 +86,16 @@ $("#delete").click(remove)
 function remove(e) 
 {
     e.preventDefault();
+    currentCustomer.name = $("#dname").val();
+    currentCustomer.email = $("#demail").val();
+    currentCustomer.phone = $("#dphone").val();
+    currentCustomer.address = $("#daddress").val();
     for (let i = 0; i < listCustomer.length; i++) {
         if (currentCustomer.id == listCustomer[i].id) {
+            listCustomer[i].name = currentCustomer.name;
+            listCustomer[i].email = currentCustomer.email;
+            listCustomer[i].phone = currentCustomer.phone;
+            listCustomer[i].address = currentCustomer.address;
             listCustomer.splice(i, 1);
             break;
         }
@@ -99,6 +113,8 @@ function handleEditCustomer(element) {
 
 function handleDeleteCustomer(element) {
     setCurrentCustomer(element.dataset.customerid);
+
+    appendDeleteCustomerInfor(currentCustomer);
 }
 
 function render(listCustomer) {
