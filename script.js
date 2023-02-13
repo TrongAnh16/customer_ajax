@@ -104,7 +104,6 @@ function remove(e)
 }
 
 
-
 function handleEditCustomer(element) {
     setCurrentCustomer(element.dataset.customerid);
 
@@ -118,7 +117,7 @@ function handleDeleteCustomer(element) {
 }
 
 function render(listCustomer) {
-  let htmls =  listCustomer.map(function(customer) {
+  let htmls =  listCustomer.map(function(customer, index) {
         return `
             <tr>
                 <td>
@@ -127,6 +126,7 @@ function render(listCustomer) {
                         <label for="checkbox4"></label>
                     </span>
                 </td>
+                <td>${index + 1}</td>
                 <td>${customer.name}</td>
                 <td>${customer.email}</td>
                 <td>${customer.phone}</td>
